@@ -13,7 +13,7 @@ from mutagen.mp3 import MP3
 from pygame import mixer
 
 screen = tk.ThemedTk()
-screen.get_themes()                 # Returns a list of all themes that can be set
+screen.get_themes()                 
 screen.set_theme("radiance")
 
 
@@ -115,7 +115,7 @@ def show_details(play_song):
         a = mixer.Sound(play_song)
         total_length = a.get_length()
 
-    # div - total_length/60, mod - total_length % 60
+    
     mins, secs = divmod(total_length, 60)
     mins = round(mins)
     secs = round(secs)
@@ -128,8 +128,7 @@ def show_details(play_song):
 
 def start_count(t):
     global paused
-    # mixer.music.get_busy(): - Returns FALSE when we press the stop button (music stop playing)
-    # Continue - Ignores all of the statements below it. We check if music is paused or not.cc
+    
     current_time = 0
     while current_time <= t and mixer.music.get_busy():
         if paused:
@@ -144,7 +143,7 @@ def start_count(t):
             current_time += 1
 
 
-#created the clickbuttons
+
 def play_click():
     global paused
 
@@ -225,7 +224,7 @@ stop_button = Button(middleframe,image = stop_image ,command=stop_click)
 stop_button.grid(row=0, column=1, padx=10)
 
 
-pause_image = PhotoImage(file='images/pause.png')
+pause_image = PhotoImage(file='pause.png')
 pause_button = ttk.Button(middleframe, image=pause_image, command=pause_click)
 pause_button.grid(row=0, column=2, padx=10)
 
@@ -233,19 +232,19 @@ pause_button.grid(row=0, column=2, padx=10)
 bottomframe = Frame(rightframe)
 bottomframe.pack()
 
-rewind_image = PhotoImage(file='images/rewind.png')
+rewind_image = PhotoImage(file='rewind.png')
 rewind_button = ttk.Button(bottomframe, image=rewind_image, command=rewind_click)
 rewind_button.grid(row=0, column=0,padx=10)
 
-mute_image = PhotoImage(file='images/mute.png')
-volume_image = PhotoImage(file='images/volume.png')
+mute_image = PhotoImage(file='mute.png')
+volume_image = PhotoImage(file='volume.png')
 volume_button = ttk.Button(bottomframe, image=volume_image, command=mute_music)
 volume_button.grid(row=0, column=1,padx=10)
 
 
-#this is scale widget for increase and decrease the volume
+
 scale = ttk.Scale(bottomframe, from_=0, to=100, orient=HORIZONTAL, command=set_vol)
-scale.set(70)  # implement the default value of scale when music player starts
+scale.set(70)  
 mixer.music.set_volume(0.7)
 scale.grid(row=0, column=2, pady=15, padx=30)
 
@@ -261,6 +260,4 @@ def on_closing():
 	
 
 screen.protocol("WM_DELETE_WINDOW", on_closing)
-
-#screen.iconbitmap('Home/Manisha/Project/Music-Player/acoustic.ico')
 screen.mainloop()
